@@ -5,25 +5,33 @@
 #   region = "eu-west-2"
 #   }
 # }
-credentials "app.terraform.io" {
-  token = "0zzKYM3zNUe7lg.atlasv1.ewA1ixZeOdpnAQvLcyNtvycn2uxyC7mOSv28XgFM5DDC3TZrml5rMsEjwhrDdof8VSM"
-}
-
+# terraform {
+#   required_providers {
+#     aws = {
+#       source = "hashicorp/aws"
+#     }
+#     random = {
+#       source = "hashicorp/random"
+#     }
+#   }
+  
+#   backend "remote" {
+#   organization = "sockshop"
+    
+#     workspaces {
+#       name = "sockshop"
+#     }
+#   }
+# }
 
 terraform {
-  required_providers {
-    aws = {
-      source = "hashicorp/aws"
+      backend "remote" {
+        # The name of your Terraform Cloud organization.
+        organization = "sockshop"
+
+        # The name of the Terraform Cloud workspace to store Terraform state files in.
+        workspaces {
+          name = "sockshop"
+        }
+      }
     }
-    random = {
-      source = "hashicorp/random"
-    }
-  }
-  backend "remote" {
-  organization = "sockshop"
-    
-    workspaces {
-      name = "sockshop"
-    }
-  }
-}
